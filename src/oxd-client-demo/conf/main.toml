@@ -1,10 +1,13 @@
 title = "config"
 host = "10.0.0.75:8080"
+key = "/home/kepuss/key.pem"
+cert = "/home/kepuss/cert.pem"
+
 
 [registerSiteRequestParams]
 opHost = "https://gluuserver"
-authorizationRedirectUri = "https://10.0.0.250/redirect"
-postLogoutRedirectUri = "https://10.0.0.250/logout"
+authorizationRedirectUri = "https://10.0.0.250:8080/redirect"
+postLogoutRedirectUri = "https://10.0.0.250:8080/logout"
 
 redirectUris = []
 responseTypes = ["code"]
@@ -26,27 +29,20 @@ grantType = ["authorization_code"]
 contacts = ["example@example.com"]
 
 
-[updateSiteRequestParams]
-oxdId = "46099f43-7f66-4302-8c2f-7cf802722949"
-opHost = "https://gluuserver"
-authorizationRedirectUri = "https://10.0.0.250/redirect"
-postLogoutRedirectUri = "https://10.0.0.250/logout"
-
-scope = ["openid", "profile"]
-
-[authorizationUrlRequestParams]
-OxdId = "46099f43-7f66-4302-8c2f-7cf802722949"
-Scope = ["openid"]
-AcrValues = []
-Prompt = ""
+#[updateSiteRequestParams]
+#oxdId = "46099f43-7f66-4302-8c2f-7cf802722949"
+#opHost = "https://gluuserver"
+#authorizationRedirectUri = "https://10.0.0.250/redirect"
+#postLogoutRedirectUri = "https://10.0.0.250/logout"
+#
+#scope = ["openid", "profile"]
 
 [authorizationCodeRequestParams]
-OxdId = "46099f43-7f66-4302-8c2f-7cf802722949"
-RedirectUrl = "https://10.0.0.250/redirect"
-ClientId = ""
-ClientSecret = ""
-UserId = ""
-UserSecret = ""
-Scope = ["openid"]
-Nonce = ""
-Acr = ""
+clientId = "@!BB85.C095.8C1E.0573!0001!F554.249C!0008!213A.710A"
+clientSecret = ""
+userId =""
+userSecret =""
+scope = ["openid"]
+acr = ""
+nonce = "15d3ltbdd65b1o9at1q5gjq3ge"
+authorizationRedirectUri = "https://10.0.0.250:8080/redirect"

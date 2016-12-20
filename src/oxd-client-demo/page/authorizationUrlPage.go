@@ -6,22 +6,26 @@ import (
 	"oxd-client/client"
 	"oxd-client/model/params"
 	"oxd-client/constants"
-	"encoding/json"
-	"oxd-client/utils"
-	"fmt"
+	"oxd-client/model/transport"
+	"oxd-client-demo/service"
+	"github.com/juju/loggo"
 )
 
-func AuthorizationUrlPageSite(w http.ResponseWriter, r *http.Request, configuration conf.Configuration) {
+func AuthorizationUrlPageSite(w http.ResponseWriter, r *http.Request, configuration conf.Configuration, session conf.SessionVars) {
 
-	result := client.BuildOxdResponse(model.AuthorizationUrlResponseParams{})
-	client.Send(
-		client.BuildOxdRequest(constants.GET_AUTHORIZATION_URL,configuration.AuthorizationUrlRequestParams),
-		configuration.Host, &result)
+	log :=loggo.GetLogger("default")
+	var oxdResponse transport.OxdResponse
 
-	response,err := json.Marshal(result)
-	utils.CheckError("AuthorizationPageSite","Marshal error",err)
-	value, err := json.Marshal(configuration.AuthorizationUrlRequestParams)
-	utils.CheckError("AuthorizationPageSite","Marshal error",err)
-	fmt.Fprintf(w, string(value))
-	fmt.Fprintf(w, string(response))
+	page.CallOxdServer(
+		client.BuildOxdRequest(constants.GET_AUTHORIZATION_URL,
+			model.AuthorizationUrlRequestParams{session.OxdId,make([]string, 0),"",make([]string, 0)}),
+		&oxdResponse,
+		configuration.Host)
+
+
+	var responseParam model.AuthorizationUrlResponseParams
+	oxdResponse.GetParams(&responseParam)
+
+	log.Debugf(responseParam.AuthorizationUrl)
+	http.Redirect(w, r, responseParam.AuthorizationUrl, http.StatusPermanentRedirect)
 }

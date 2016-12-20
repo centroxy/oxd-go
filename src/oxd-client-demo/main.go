@@ -12,24 +12,37 @@ import (
 
 
 var serverConf conf.Configuration
+var session conf.SessionVars
 
 func main() {
 
-	loggo.GetLogger("transport.transport").SetLogLevel(loggo.DEBUG)
+	loggo.GetLogger("default").SetLogLevel(loggo.DEBUG)
 
 	http.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
-		page.RegisterSitePage(w, r, serverConf)
+		page.RegisterSitePage(w, r, serverConf, &session)
 	})
 
 	http.HandleFunc("/update", func(w http.ResponseWriter, r *http.Request) {
-		page.UpdateSitePage(w, r, serverConf)
+		page.UpdateSitePage(w, r, serverConf, &session)
 	})
 
 	http.HandleFunc("/authUrl", func(w http.ResponseWriter, r *http.Request) {
-		page.AuthorizationUrlPageSite(w, r, serverConf)
+		page.AuthorizationUrlPageSite(w, r, serverConf,session)
 	})
 
-	err := http.ListenAndServe(":8080", nil) // set listen port
+	http.HandleFunc("/redirect", func(w http.ResponseWriter, r *http.Request) {
+		page.RedirectPage(w, r, serverConf, &session)
+	})
+
+	http.HandleFunc("/userInfo", func(w http.ResponseWriter, r *http.Request) {
+		page.UserInfoPage(w, r, serverConf, session)
+	})
+
+	http.HandleFunc("/authCode", func(w http.ResponseWriter, r *http.Request) {
+		page.AuthorizationCodePageSite(w, r, serverConf)
+	})
+
+	err := http.ListenAndServeTLS(":8080",serverConf.Cert, serverConf.Key, nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

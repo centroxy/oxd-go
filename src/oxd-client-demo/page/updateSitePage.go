@@ -3,26 +3,23 @@ package page
 import (
 	"net/http"
 	"oxd-client-demo/conf"
+	"oxd-client-demo/service"
 	"oxd-client/client"
-	"oxd-client/model/params"
 	"oxd-client/constants"
-	"encoding/json"
-	"oxd-client/utils"
-	"fmt"
+	"oxd-client/model/params"
+	"oxd-client/model/transport"
 )
 
 
-func UpdateSitePage(w http.ResponseWriter, r *http.Request, configuration conf.Configuration) {
+func UpdateSitePage(w http.ResponseWriter, r *http.Request, configuration conf.Configuration, session *conf.SessionVars) {
+	var oxdResponse transport.OxdResponse
 
-	result := client.BuildOxdResponse(model.UpdateSiteResponseParams{})
-	client.Send(
+	page.CallOxdServer(
 		client.BuildOxdRequest(constants.UPDATE_SITE,configuration.UpdateSiteRequestParams),
-		configuration.Host, &result)
+		&oxdResponse,
+		configuration.Host)
 
-	response,err := json.Marshal(result)
-	utils.CheckError("UpdateSitePage","Marshal error",err)
-	value, err := json.Marshal(configuration.RegisterSiteRequestParams)
-	utils.CheckError("UpdateSitePage","Marshal error",err)
-	fmt.Fprintf(w, string(value))
-	fmt.Fprintf(w, string(response))
+	var params model.UpdateSiteRequestParams
+	oxdResponse.GetParams(&params)
+	session.OxdId = params.OxdId
 }

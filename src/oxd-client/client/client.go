@@ -19,7 +19,7 @@ func BuildOxdRequest(command constants.CommandType, params transport.Param) tran
 	return transport.OxdRequest{command,params}
 }
 
-func BuildOxdResponse(params transport.Param) transport.OxdResponse {
-	return transport.OxdResponse{"",params}
-}
+//func BuildOxdResponse(params *transport.Param) transport.OxdResponse {
+//	return transport.OxdResponse{"",params}
+//}
 
