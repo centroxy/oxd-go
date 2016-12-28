@@ -3,30 +3,27 @@ package page
 import (
 	"net/http"
 	"oxd-client-demo/conf"
-	"oxd-client/client"
-	"oxd-client/model/params"
-	"oxd-client/constants"
 	"oxd-client-demo/service"
+	"oxd-client/client"
+	"oxd-client/constants"
+	"oxd-client/model/params/token"
 	"oxd-client/model/transport"
-	"encoding/json"
-	"fmt"
+	"oxd-client-demo/utils"
 )
 
-func AuthorizationCodePageSite(w http.ResponseWriter, r *http.Request, configuration conf.Configuration) {
+func AuthorizationCodePageSite(w http.ResponseWriter, r *http.Request, configuration conf.Configuration, session *conf.SessionVars) {
 	var oxdResponse transport.OxdResponse
 
 	page.CallOxdServer(
-		client.BuildOxdRequest(constants.AUTHORIZATION_CODE_FLOW,configuration.AuthorizationCodeRequestParams),
+		client.BuildOxdRequest(constants.GET_AUTHORIZATION_CODE,
+			model.AuthorizationCodeRequestParams{session.OxdId,
+				configuration.Username, configuration.Password, make([]string, 0),"",session.State}),
 		&oxdResponse,
 		configuration.Host)
 
 	var response model.AuthorizationCodeResponseParams
 	oxdResponse.GetParams(&response)
-	displayCodeResponseParams(w,response)
-}
-
-func displayCodeResponseParams(w http.ResponseWriter,response model.AuthorizationCodeResponseParams){
-	value, _ := json.Marshal(response)
-	fmt.Fprintln(w,string(value))
+	session.Code = response.Code
+	utils.DisplayResponse(w,response)
 }
 

@@ -4,12 +4,11 @@ import (
 	"net/http"
 	"oxd-client-demo/conf"
 	"oxd-client/client"
-	"oxd-client/model/params"
+	"oxd-client/model/params/token"
 	"oxd-client/constants"
 	"oxd-client/model/transport"
-	"encoding/json"
-	"fmt"
 	"oxd-client-demo/service"
+	"oxd-client-demo/utils"
 )
 
 func RedirectPage(w http.ResponseWriter, r *http.Request, configuration conf.Configuration, session *conf.SessionVars) {
@@ -17,7 +16,7 @@ func RedirectPage(w http.ResponseWriter, r *http.Request, configuration conf.Con
 	readQueryParams(r,session)
 	response := getTokensByCode(*session,configuration)
 	saveTokens(response,session)
-	displayResponse(w,response)
+	utils.DisplayResponse(w,response)
 }
 
 func readQueryParams(r *http.Request, session *conf.SessionVars){
@@ -44,7 +43,3 @@ func saveTokens(response model.TokensByCodeResponseParams, session *conf.Session
 	session.IdToken = response.IdToken
 }
 
-func displayResponse(w http.ResponseWriter,response model.TokensByCodeResponseParams){
-	value, _ := json.Marshal(response)
-	fmt.Fprintln(w,string(value))
-}

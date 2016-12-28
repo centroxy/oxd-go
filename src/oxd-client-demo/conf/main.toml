@@ -3,6 +3,11 @@ host = "10.0.0.75:8080"
 key = "/home/kepuss/key.pem"
 cert = "/home/kepuss/cert.pem"
 
+username = "mkepkowski"
+password = "pot12ter"
+
+loglevel = "debug"
+
 
 [registerSiteRequestParams]
 opHost = "https://gluuserver"
@@ -21,7 +26,7 @@ clientRequestUris  = []
 clientLogoutUri  = []
 clientSectorIdentifierUri = ""
 
-scope = ["openid"]
+scope = ["openid", "profile"]
 uiLocales  = []
 claimsLocales  = []
 acrValues = []
@@ -29,20 +34,12 @@ grantType = ["authorization_code"]
 contacts = ["example@example.com"]
 
 
-#[updateSiteRequestParams]
-#oxdId = "46099f43-7f66-4302-8c2f-7cf802722949"
-#opHost = "https://gluuserver"
-#authorizationRedirectUri = "https://10.0.0.250/redirect"
-#postLogoutRedirectUri = "https://10.0.0.250/logout"
-#
-#scope = ["openid", "profile"]
-
-[authorizationCodeRequestParams]
+[authorizationCodeFlowRequestParams]
 clientId = "@!BB85.C095.8C1E.0573!0001!F554.249C!0008!213A.710A"
 clientSecret = ""
 userId =""
 userSecret =""
-scope = ["openid"]
+scope = "openid"
 acr = ""
 nonce = "15d3ltbdd65b1o9at1q5gjq3ge"
 authorizationRedirectUri = "https://10.0.0.250:8080/redirect"

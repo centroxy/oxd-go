@@ -3,7 +3,7 @@ package model
 type TokensByCodeRequestParams struct {
 	OxdId string `json:"oxd_id"`
 	Code  string `json:"code"`
-	State string `json:"state"`
+	State string `json:"state,omitempty"`
 }
 
 type TokensByCodeResponseParams struct {

@@ -1,0 +1,14 @@
+package model
+
+type AuthorizationCodeRequestParams struct {
+	OxdId string `json:"oxd_id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	AcrValues []string `json:"acr_values,omitempty"`
+	Nonce string `json:"nonce,omitempty"`
+	State string `json:"state"`
+}
+
+type AuthorizationCodeResponseParams struct {
+	Code string `json:"code"`
+}

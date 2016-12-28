@@ -14,7 +14,7 @@ func CallOxdServer (request transport.OxdRequest,response *transport.OxdResponse
 }
 
 func debugCommunication(request transport.OxdRequest,response transport.OxdResponse){
-	LOG :=loggo.GetLogger("CallOxdServer")
+	LOG :=loggo.GetLogger("default")
 
 	res,err := json.Marshal(response)
 	utils.CheckError("CallOxdServer","Marshal error",err)

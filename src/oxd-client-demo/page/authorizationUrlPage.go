@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"oxd-client-demo/conf"
 	"oxd-client/client"
-	"oxd-client/model/params"
+	"oxd-client/model/params/url"
 	"oxd-client/constants"
 	"oxd-client/model/transport"
 	"oxd-client-demo/service"
@@ -23,9 +23,9 @@ func AuthorizationUrlPageSite(w http.ResponseWriter, r *http.Request, configurat
 		configuration.Host)
 
 
-	var responseParam model.AuthorizationUrlResponseParams
-	oxdResponse.GetParams(&responseParam)
+	var response model.AuthorizationUrlResponseParams
+	oxdResponse.GetParams(&response)
 
-	log.Debugf(responseParam.AuthorizationUrl)
-	http.Redirect(w, r, responseParam.AuthorizationUrl, http.StatusPermanentRedirect)
+	log.Debugf(response.AuthorizationUrl)
+	http.Redirect(w, r, response.AuthorizationUrl, http.StatusPermanentRedirect)
 }

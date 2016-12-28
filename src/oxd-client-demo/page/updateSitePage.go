@@ -6,8 +6,9 @@ import (
 	"oxd-client-demo/service"
 	"oxd-client/client"
 	"oxd-client/constants"
-	"oxd-client/model/params"
 	"oxd-client/model/transport"
+	"oxd-client/model/params/registration"
+	"oxd-client-demo/utils"
 )
 
 
@@ -19,7 +20,8 @@ func UpdateSitePage(w http.ResponseWriter, r *http.Request, configuration conf.C
 		&oxdResponse,
 		configuration.Host)
 
-	var params model.UpdateSiteRequestParams
-	oxdResponse.GetParams(&params)
-	session.OxdId = params.OxdId
+	var response model.UpdateSiteResponseParams
+	oxdResponse.GetParams(&response)
+	session.OxdId = response.OxdId
+	utils.DisplayResponse(w,response)
 }

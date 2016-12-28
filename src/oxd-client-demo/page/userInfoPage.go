@@ -8,8 +8,7 @@ import (
 	"oxd-client/constants"
 	"oxd-client/model/params"
 	"oxd-client/model/transport"
-	"encoding/json"
-	"fmt"
+	"oxd-client-demo/utils"
 )
 
 func UserInfoPage(w http.ResponseWriter, r *http.Request, configuration conf.Configuration, session conf.SessionVars) {
@@ -23,10 +22,8 @@ func UserInfoPage(w http.ResponseWriter, r *http.Request, configuration conf.Con
 
 	var response model.UserInfoResponseParams
 	oxdResponse.GetParams(&response)
-	display(w,response)
+	utils.DisplayResponse(w,response)
 }
 
-func display(w http.ResponseWriter,response model.UserInfoResponseParams){
-	value, _ := json.Marshal(response)
-	fmt.Fprintln(w,string(value))
-}
+
+
