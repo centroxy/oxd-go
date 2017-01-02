@@ -1,11 +1,12 @@
-package constants
-
-type CommandType string
 //
 //  Copyright Sagiton
 //  Author: Michał Kępkowski
 //  Date: 02/01/17
 //
+package constants
+
+type CommandType string
+
 const (
 	// Register
 	REGISTER_SITE CommandType = "register_site"
