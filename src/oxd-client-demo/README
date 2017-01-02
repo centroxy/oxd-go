@@ -1,0 +1,8 @@
+This demo presents the simplest usage of go oxd-server plugin
+
+To run it oxd-server and gluu-server instance is requeried
+All parameters are configurable in oxd-client-demo/conf/main.toml
+
+To run demo launch run.sh script
+Main demo page is accessible under https://localhost:8080
+

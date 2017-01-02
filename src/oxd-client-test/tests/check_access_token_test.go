@@ -1,3 +1,8 @@
+//
+//  Copyright Sagiton
+//  Author: Michał Kępkowski
+//  Date: 02/01/17
+//
 package tests
 
 import (
@@ -11,13 +16,13 @@ import (
 	"oxd-client-test/conf"
 )
 
-func TestCheckIdToken(t *testing.T) {
+func TestCheckAccessToken(t *testing.T) {
 	//BEFORE
 	codeResponse, oxdId := utils.ExecCodeFlow()
-	requestParams := validation.CheckIdTokenRequestParams{oxdId, codeResponse.IdToken}
-	request := client.BuildOxdRequest(constants.CHECK_ID_TOKEN,requestParams)
+	requestParams := validation.CheckAccessTokenRequestParams{oxdId, codeResponse.IdToken, codeResponse.AccessToken}
+	request := client.BuildOxdRequest(constants.CHECK_ACCESS_TOKEN,requestParams)
 	var response transport.OxdResponse
-	var responseParams validation.CheckIdTokenResponseParams
+	var responseParams validation.CheckAccessTokenResponseParams
 
 	//TEST
 	client.Send(request,conf.TestConfiguration.Host,&response)
@@ -28,5 +33,4 @@ func TestCheckIdToken(t *testing.T) {
 	assert.NotEmpty(t,responseParams.Active,"Active should not be empty")
 	assert.NotEmpty(t,responseParams.ExpiresAt,"ExpiresAt should not be empty")
 	assert.NotEmpty(t,responseParams.IssuedAt,"IssuedAt should not be empty")
-	assert.NotEmpty(t,responseParams.Claims,"AccessToken should not be empty")
 }

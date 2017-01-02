@@ -1,3 +1,8 @@
+//
+//  Copyright Sagiton
+//  Author: Michał Kępkowski
+//  Date: 02/01/17
+//
 package tests
 
 import (
@@ -5,20 +10,19 @@ import (
 	"oxd-client/client"
 	"oxd-client/constants"
 	"github.com/stretchr/testify/assert"
-	"oxd-client/model/params/url"
+	"oxd-client/model/params"
+	"oxd-client-test/utils"
 	"oxd-client/model/transport"
 	"oxd-client-test/conf"
-	"oxd-client-test/utils"
 )
 
-func TestGetLogoutUrl(t *testing.T) {
+func TestGetUserInfo(t *testing.T) {
 	//BEFORE
 	codeResponse, oxdId := utils.ExecCodeFlow()
-	requestParams := model.LogoutUrlRequestParams{oxdId, codeResponse.IdToken,
-		conf.TestConfiguration.PostLogoutRedirectUrl, "",""}
-	request := client.BuildOxdRequest(constants.GET_LOGOUT_URI,requestParams)
+	requestParams := model.UserInfoRequestParams{oxdId,codeResponse.AccessToken}
+	request := client.BuildOxdRequest(constants.GET_USER_INFO,requestParams)
 	var response transport.OxdResponse
-	var responseParams model.LogoutUrlResponseParams
+	var responseParams model.UserInfoResponseParams
 
 	//TEST
 	client.Send(request,conf.TestConfiguration.Host,&response)
@@ -26,5 +30,5 @@ func TestGetLogoutUrl(t *testing.T) {
 	//ASSERT
 	response.GetParams(&responseParams)
 	assert.Equal(t,constants.STATUS_OK,response.Status,"Status should be ok")
-	assert.NotEmpty(t,responseParams.Uri,"Uri should not be empty")
+	assert.NotEmpty(t,responseParams.Claims,"AccessToken should not be empty")
 }

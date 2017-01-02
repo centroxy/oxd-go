@@ -5,7 +5,7 @@ postLogoutRedirectUrl="https://client.example.com/cb/logout"
 logoutUrl="https://client.example.com/logout"
 userId="admin"
 userSecret="zaq1@WSX"
-clientId="@!BB85.C095.8C1E.0573!0001!F554.249C!0008!4DF5.CE40"
+clientId="@!BB85.C095.8C1E.0573!0001!F554.249C!0008!AB95.9DF3"
 clientSecret="zaq1@WSX"
 scope="openid"
 
