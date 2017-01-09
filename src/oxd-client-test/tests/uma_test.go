@@ -18,7 +18,6 @@ import (
 )
 
 func TestUma(t *testing.T) {
-	//BEFORE
 	oxdId := utils.RegisterClient()
 	protectRs(oxdId)
 	checkAccessParams := checkAccess(oxdId,"", "/ws/phone", "GET")
