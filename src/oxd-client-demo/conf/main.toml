@@ -8,7 +8,6 @@ password = "test_user_password"
 
 loglevel = "debug"
 
-
 [registerSiteRequestParams]
 opHost = "https://ce-dev2.gluu.org"
 authorizationRedirectUri = "https://10.0.0.250:8080/redirect"
