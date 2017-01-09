@@ -1,16 +1,16 @@
 title = "config"
-host = "10.0.0.75:8080"
+host = "oxd-server.com:8080"
 key = "/home/kepuss/key.pem"
 cert = "/home/kepuss/cert.pem"
 
-username = "mkepkowski"
-password = "pot12ter"
+username = "test_user"
+password = "test_user_password"
 
 loglevel = "debug"
 
 
 [registerSiteRequestParams]
-opHost = "https://gluuserver"
+opHost = "https://ce-dev2.gluu.org"
 authorizationRedirectUri = "https://10.0.0.250:8080/redirect"
 postLogoutRedirectUri = "https://10.0.0.250:8080/logout"
 

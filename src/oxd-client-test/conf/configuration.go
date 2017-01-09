@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"strings"
 	"github.com/juju/loggo"
+	"oxd-client/model/params/uma/protect"
 )
 
 type Configuration struct {
@@ -25,6 +26,8 @@ type Configuration struct {
 	ClientSecret string `toml:"clientSecret"`
 	Loglevel string `toml:"logLevel"`
 	Scope string `toml:"scope"`
+	Path string `toml:"path"`
+	Condition []protect.Condition `toml:"condition"`
 }
 
 func  loadProperties(c *Configuration){

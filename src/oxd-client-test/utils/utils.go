@@ -36,7 +36,7 @@ func PrepareRegisterParams()  model.RegisterSiteRequestParams {
 	requestParams.ClientLogoutUri = []string {conf.TestConfiguration.LogoutUrl}
 	requestParams.RedirectUris = [] string {conf.TestConfiguration.RedirectUrl}
 	requestParams.AcrValues = make([]string,0)
-	requestParams.Scope = []string{"openid", "profile"}
+	requestParams.Scope = []string{"openid", "profile","uma_protection","uma_authorization"}
 	requestParams.GrantType = []string{"authorization_code"}
 	requestParams.ResponseTypes = []string{"code"}
 	return  requestParams

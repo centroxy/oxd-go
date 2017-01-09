@@ -18,7 +18,7 @@ import (
 
 func TestRpGetGat(t *testing.T) {
 	//BEFORE
-	requestParams := uma.RpGetGatRequestParams{utils.RegisterClient(),[]string{"scim_access"}}
+	requestParams := uma.RpGetGatRequestParams{utils.RegisterClient(),[]string{"http://photoz.example.com/dev/actions/all"}}
 	request := client.BuildOxdRequest(constants.RP_GET_GAT,requestParams)
 	var response transport.OxdResponse
 	var responseParams uma.RpGetGatResponseParams

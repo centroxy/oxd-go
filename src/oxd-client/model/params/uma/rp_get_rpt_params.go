@@ -7,7 +7,7 @@ package uma
 
 type RpGetRptRequestParams struct {
 	OxdId string `json:"oxd_id"`
-	ForceNew bool `json:"force_new"`
+	ForceNew bool `json:"force_new,omitempty"`
 }
 
 type RpGetRptResponseParams struct {

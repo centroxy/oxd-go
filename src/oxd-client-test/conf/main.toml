@@ -3,10 +3,28 @@ opHost="https://gluuserver"
 redirectUrl="https://client.example.com/cb"
 postLogoutRedirectUrl="https://client.example.com/cb/logout"
 logoutUrl="https://client.example.com/logout"
-userId="admin"
-userSecret="zaq1@WSX"
-clientId="@!BB85.C095.8C1E.0573!0001!F554.249C!0008!AB95.9DF3"
+userId="test_user"
+userSecret="test_user_password"
+clientId="@!BB85.C095.8C1E.0573!0001!F554.249C!0008!91C9.B4FA"
 clientSecret="zaq1@WSX"
 scope="openid"
+
+
+path="/ws/phone"
+
+[[condition]]
+httpMethods=["GET"]
+scopes=["http://photoz.example.com/dev/actions/all","http://photoz.example.com/dev/actions/view"]
+ticketScopes=["http://photoz.example.com/dev/actions/view"]
+
+[[condition]]
+httpMethods=["PUT", "POST"]
+scopes=["http://photoz.example.com/dev/actions/all","http://photoz.example.com/dev/actions/add"]
+ticketScopes=["http://photoz.example.com/dev/actions/add"]
+
+[[condition]]
+httpMethods=["DELETE"]
+scopes=["http://photoz.example.com/dev/actions/all","http://photoz.example.com/dev/actions/remove"]
+ticketScopes=["http://photoz.example.com/dev/actions/remove"]
 
 loglevel = "Debug"
