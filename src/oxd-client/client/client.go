@@ -1,10 +1,10 @@
-//
+﻿//
 //  Copyright Sagiton
 //  Author: Michał Kępkowski
 //  Date: 02/01/17
-//
+//Testing
 package client
-
+package client
 import (
 	"oxd-client/model/transport"
 	socket "oxd-client/transport"
